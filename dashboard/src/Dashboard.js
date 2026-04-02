@@ -1,13 +1,20 @@
 import React from 'react'
-import Card from './components/uiComponents/card';
+import Card from './components/uiComponents/card.tsx';
+import { ExpenseCard } from './components/uiComponents/ExpenseCard.tsx';
 import ToggleTheme from './components/uiComponents/ToggleTheme';
 import SwitchRole from './components/uiComponents/SwitchRole';
-import TransactionColumn from './components/transactions/TransactionColumn';
+import { TransactionColumn } from './components/transactions/TransactionColumn.tsx';
 import FinancialInsights from './components/graph/FinancialInsights';
 import TimeBasedGraph from './components/graph/TimeBasedGraph';
 import CategoryGraph from './components/graph/CategoryGraph';
-
+import { calculateTotalBalance, TotalIncome, TotalExpenses } from './lib/financeCalculation.ts';
+import { useFinance } from './context/FinanceContext.tsx';
+import { DollarSign, TrendingUp, TrendingDown } from 'lucide-react';
 const Dashboard = () => {
+    const { transactions } = useFinance();
+    const totalBalance = calculateTotalBalance(transactions);
+    const totalIncome = TotalIncome(transactions);
+    const totalExpenses = TotalExpenses(transactions);
     return (
         <div>
             <header className="border-b border-border bg-card sticky top-0 z-10">
@@ -27,12 +34,27 @@ const Dashboard = () => {
             </header>
             <main>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <Card title="Total Income" amount="10000" icon="💰" color="green" />
-                    <Card title="Current Balance" amount="10000" icon="💰" color="blue" />
-                    <Card title="Total Expenses" amount="10000" icon="💰" color="red" />
+                    <ExpenseCard
+                        title="Total Balance"
+                        amount={totalBalance}
+                        icon={<DollarSign />}
+                        color="blue"
+                    />
+                    <ExpenseCard
+                        title="Total Income"
+                        amount={totalIncome}
+                        icon={<TrendingUp />}
+                        color="green"
+                    />
+                    <ExpenseCard
+                        title="Total Expenses"
+                        amount={totalExpenses}
+                        icon={<TrendingDown />}
+                        color="red"
+                    />
                 </div>
-                <div>
-                    <div>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <div className="lg:col-span-2">
                         <TimeBasedGraph />
                     </div>
                     <div>
