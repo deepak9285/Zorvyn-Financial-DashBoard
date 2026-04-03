@@ -125,7 +125,6 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
         setIsHydrated(true);
     }, []);
 
-    // Save to localStorage whenever transactions change
     useEffect(() => {
         if (isHydrated) {
             localStorage.setItem('finance_transactions', JSON.stringify(transactions));
