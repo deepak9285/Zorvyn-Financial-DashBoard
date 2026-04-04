@@ -90,42 +90,43 @@ export function TransactionColumn() {
           Transactions
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-3 sm:space-y-4">
-        <div className="flex justify-between items-start sm:items-center mb-2 gap-2">
-          <p className="text-xs sm:text-sm text-muted-foreground">
-            Manage and analyze your transactions
-          </p>
-        </div>
+      <CardContent className="space-y-3 sm:space-y-4 pt-4">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-          <Input
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="border border-border text-xs sm:text-sm"
-          />
-          <Select value={filterCategory} onValueChange={setFilterCategory}>
-            <SelectTrigger className="border border-border text-xs sm:text-sm">
-              <SelectValue placeholder="Category" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Categories</SelectItem>
-              {categories.map((cat) => (
-                <SelectItem key={cat} value={cat}>
-                  {cat}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Select value={filterType} onValueChange={setFilterType}>
-            <SelectTrigger className="border border-border text-xs sm:text-sm">
-              <SelectValue placeholder="Type" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Types</SelectItem>
-              <SelectItem value="income">Income</SelectItem>
-              <SelectItem value="expense">Expense</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="border border-bold border-white p-3 rounded-xl">
+            <Input
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="border border-border text-xs sm:text-sm"
+            />
+          </div>
+          <div className="border border-white p-3 rounded-xl flex items-center">
+            <Select value={filterCategory} onValueChange={setFilterCategory}>
+              <SelectTrigger className="border border-border text-xs sm:text-sm w-full">
+                <SelectValue placeholder="Category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Categories</SelectItem>
+                {categories.map((cat) => (
+                  <SelectItem key={cat} value={cat}>
+                    {cat}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="border border-white p-3 rounded-xl flex items-center">
+            <Select value={filterType} onValueChange={setFilterType}>
+              <SelectTrigger className="border border-border text-xs sm:text-sm w-full">
+                <SelectValue placeholder="Type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Types</SelectItem>
+                <SelectItem value="income">Income</SelectItem>
+                <SelectItem value="expense">Expense</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
         {sorted.length === 0 ? (
@@ -192,11 +193,10 @@ export function TransactionColumn() {
                       </span>
                     </td>
                     <td
-                      className={`py-2 sm:py-3 px-1 sm:px-2 text-right font-semibold whitespace-nowrap ${
-                        transaction.type === "income"
-                          ? "text-green-600"
-                          : "text-red-600"
-                      }`}
+                      className={`py-2 sm:py-3 px-1 sm:px-2 text-right font-semibold whitespace-nowrap ${transaction.type === "income"
+                        ? "text-green-600"
+                        : "text-red-600"
+                        }`}
                     >
                       {transaction.type === "income" ? "+" : "-"}
                       {formatCurrency(transaction.amount)}

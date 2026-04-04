@@ -11,6 +11,13 @@ import {
 import { useFinance } from "../../context/FinanceContext.tsx";
 import { calculateExpensesByCategory } from "../../lib/financeCalculation.ts";
 
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../uiComponents/card.tsx";
+
 const CategoryGraph = () => {
   const { transactions } = useFinance();
   const expenses = useMemo(() => calculateExpensesByCategory(transactions), []);
@@ -19,11 +26,13 @@ const CategoryGraph = () => {
     amount,
   }));
   return (
-    <div className="w-full h-full">
-      <h1 className="text-lg sm:text-2xl w-full font-bold text-foreground mb-4">
-        Expenses by Category
-      </h1>
-      <div className="bg-gray-200 rounded-lg p-3 sm:p-6 w-full overflow-x-auto">
+    <Card className="border border-border w-full">
+      <CardHeader>
+        <CardTitle className="text-sm sm:text-base font-semibold text-foreground">
+          Category Expenses
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="w-full -mx-4 px-0">
         <ResponsiveContainer
           width="100%"
           height={Math.max(300, categoryData.length * 60)}
@@ -35,14 +44,14 @@ const CategoryGraph = () => {
             <CartesianGrid strokeDasharray="5 5" />
             <XAxis
               dataKey="category"
-              stroke="var(--muted-foreground)"
+              stroke="hsl(var(--foreground))"
               angle={-45}
               textAnchor="end"
               height={100}
               style={{ fontSize: "12px" }}
             />
             <YAxis
-              stroke="var(--muted-foreground)"
+              stroke="hsl(var(--foreground))"
               style={{ fontSize: "12px" }}
             />
             <Tooltip
@@ -56,8 +65,8 @@ const CategoryGraph = () => {
             <Bar dataKey="amount" fill="#8884d8" radius={[8, 8, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

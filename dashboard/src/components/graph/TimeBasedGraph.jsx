@@ -22,10 +22,10 @@ const TimeBasedGraph = () => {
   const { transactions } = useFinance();
   const expenses = calculateExpensesByTime(transactions);
   return (
-    <Card className="border border-green-500">
+    <Card className="border border-border">
       <CardHeader>
         <CardTitle className="text-sm sm:text-base font-semibold">
-          Balance over time
+          Balance Trend
         </CardTitle>
       </CardHeader>
       <CardContent className="w-full -mx-6 px-0">
@@ -37,11 +37,11 @@ const TimeBasedGraph = () => {
             <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
             <XAxis
               dataKey="date"
-              stroke="var(--muted-foreground)"
+              stroke="hsl(var(--foreground))"
               style={{ fontSize: "11px" }}
             />
             <YAxis
-              stroke="var(--muted-foreground)"
+              stroke="hsl(var(--foreground))"
               style={{ fontSize: "11px" }}
             />
             <Tooltip

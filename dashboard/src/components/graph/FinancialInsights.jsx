@@ -30,9 +30,9 @@ export function FinancialInsights() {
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-3">
-          <div className="p-3 bg-secondary bg-gray-100 rounded-lg">
+          <div className="p-3 bg-muted rounded-lg">
             <p className="text-xs sm:text-sm text-muted-foreground mb-1">
-              Highest Spending Category
+              Top Category
             </p>
             <p className="text-sm sm:text-lg font-semibold text-foreground">
               {highestCategory ? highestCategory.category : "No data"}
@@ -44,9 +44,9 @@ export function FinancialInsights() {
             )}
           </div>
 
-          <div className="p-3 bg-secondary  bg-gray-100 rounded-lg">
+          <div className="p-3 bg-muted rounded-lg">
             <p className="text-xs sm:text-sm text-muted-foreground mb-1">
-              Monthly Spending Comparison
+              Monthly Trend
             </p>
             <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-2">
               <div>
@@ -54,7 +54,7 @@ export function FinancialInsights() {
                   This Month
                 </p>
                 <p className="text-sm sm:text-lg font-semibold text-foreground">
-                  {formatCurrency(monthlyComparison.thisMonth)}
+                  {formatCurrency(monthlyComparison.currentMonth)}
                 </p>
               </div>
               <div className="text-left sm:text-right">
@@ -66,14 +66,12 @@ export function FinancialInsights() {
                   {isIncreased ? (
                     <>
                       <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" />+
-                      {formatCurrency(monthlyComparison.percentageChange)}
+                      {monthlyComparison.percentageChange.toFixed(2)}%
                     </>
                   ) : (
                     <>
                       <TrendingDown className="w-3 h-3 sm:w-4 sm:h-4" />
-                      {formatCurrency(
-                        Math.abs(monthlyComparison.percentageChange),
-                      )}
+                      {Math.abs(monthlyComparison.percentageChange).toFixed(2)}%
                     </>
                   )}
                 </p>
@@ -82,9 +80,9 @@ export function FinancialInsights() {
             </div>
           </div>
 
-          <div className="p-3 bg-secondary bg-gray-100 rounded-lg">
+          <div className="p-3 bg-muted rounded-lg">
             <p className="text-xs sm:text-sm text-muted-foreground mb-2">
-              Financial Summary
+              Summary
             </p>
             <div className="space-y-2 text-xs sm:text-sm">
               <div className="flex justify-between">
