@@ -7,7 +7,7 @@ import {
   CardTitle,
   CardContent,
 } from "../uiComponents/card.tsx";
-import { useMemo } from "react";
+
 import {
   LineChart,
   Line,

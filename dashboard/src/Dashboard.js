@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "./components/uiComponents/card.tsx";
 import { ExpenseCard } from "./components/uiComponents/ExpenseCard.tsx";
 import ToggleTheme from "./components/uiComponents/ToggleTheme";
 import SelectRole from "./components/uiComponents/SelectRole.tsx";

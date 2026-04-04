@@ -14,7 +14,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../uiComponents/Select.tsx";
-import { Button } from "../uiComponents/Button.tsx";
 import { formatCurrency, formatDate } from "../../lib/financeCalculation.ts";
 import { ChevronUp, ChevronDown, Trash2 } from "lucide-react";
 
