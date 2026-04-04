@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { useFinance, Transaction } from "../../context/FinanceContext.tsx";
+import { useFinance } from "../../context/FinanceContext.tsx";
 import {
   Card,
   CardContent,

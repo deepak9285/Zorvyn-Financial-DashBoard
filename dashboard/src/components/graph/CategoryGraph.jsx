@@ -20,7 +20,7 @@ import {
 
 const CategoryGraph = () => {
   const { transactions } = useFinance();
-  const expenses = useMemo(() => calculateExpensesByCategory(transactions), []);
+  const expenses = useMemo(() => calculateExpensesByCategory(transactions), [transactions]);
   const categoryData = Object.entries(expenses).map(([category, amount]) => ({
     category: category,
     amount,
